@@ -1,7 +1,9 @@
-all: test clean
+all: test start clean
 test: test
-	gcc -c -o test main.o 
-main.o: main.o
-	gcc -o main.cpp main.o
+	gcc main.o -o test 
+main.o:
+	gcc -c main.cpp
+start:
+	./test
 clean: main.o
-	rm -rf main.o
+	rm -rf  test
