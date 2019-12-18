@@ -40,7 +40,7 @@ void print_perms(mode_t perms)
 
 }
 
-main(int argc, char *argv[])
+main()
 {
 	DIR* dptr ;
 	struct dirent* ds;
@@ -49,12 +49,7 @@ main(int argc, char *argv[])
 	struct group *grp;
 	struct tm *tm;
 	char datestring[256];
-	if(argc == 1 )
-	{
-		printf("Введите директорию\n");
-	}
-	else {
-	dptr = opendir(argv[1]);
+	dptr = opendir("./");
 	while((ds = readdir(dptr)) != NULL )
 	{
 	//	printf("%s \n" ,ds->d_name);
@@ -83,5 +78,4 @@ main(int argc, char *argv[])
 	printf("%s \n" ,ds->d_name);
 	}
 	closedir(dptr);
-}
 }
