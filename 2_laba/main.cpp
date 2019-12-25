@@ -40,7 +40,7 @@ void print_perms(mode_t perms)
 
 }
 
-main()
+int main()
 {
 	DIR* dptr ;
 	struct dirent* ds;
@@ -66,7 +66,7 @@ main()
 		else
 			printf("%-8d" , buf.st_gid);
 		
-		printf("%4jd", (intmax_t)buf.st_size);
+		printf("%5jd", (intmax_t)buf.st_size);
 		
 		tm = localtime(&buf.st_mtime);
 		strftime(datestring, sizeof(datestring),nl_langinfo(D_T_FMT),tm);
