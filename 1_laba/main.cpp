@@ -20,26 +20,29 @@ void new_process(){
 			perror("fork");
 			exit(1);
 		case 0 :
-			atexit(end_of_process);
 			printf("CHILD:это процесс потомок\n");
 			printf("CHILD: мой PID -- %d\n", getpid());
 			printf("CHILD:PID моего родителя -- %d\n", getppid());
 			printf("CHILD:Введите мой код возврата:\n");
 			scanf("%d",&rv);
 			printf("CHILD:Выход! \n");
-			exit(rv);
+			break;
+			//exit(rv);
 		default:
-			atexit(end_of_process);
 			printf("PARENT:это процесс родитель\n");
 			printf("PARENT: мой PID -- %d\n", getpid());
 			printf("PARENT:PID моего потомка -- %d\n", pid);
 			printf("PARENT:Жду пока потомок не вызовет exit()...\n");
 			wait(NULL);
 			printf("PARENT: Код возврата потомка : %d\n",WEXITSTATUS(rv));
-			printf("CHILD:Выход!\n");
-}}
+			printf("PARENT:Выход!\n");
+}
+
+	atexit(end_of_process);
+}
 
 void end_of_process()
 {
-	printf("Сработал вызов atexit() \n");
+	
+	printf("Сработал вызов atexit() у процесса %d\n", getpid());
 }
