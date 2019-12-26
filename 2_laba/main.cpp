@@ -13,10 +13,10 @@
 
 void print_perms(mode_t perms)
 {
-	if(perms & S_IFLNK)
-		printf("l");
-	else if(perms & S_IFREG)
+	if(perms & S_IFREG)
 		printf("-");
+	else if(perms & S_IFLNK)
+		printf("l");
 	else if(perms & S_IFDIR)
 		printf("d");
 	else if(perms & S_IFCHR)
