@@ -37,6 +37,7 @@ main()
 	    	read(fifo_read, buf, size_of_time);
 	    	printf("CHILD: Время у бати = %s\n", buf); 
 	    	close(fifo_read);
+			sleep(1);
 	    	time_t child_time = time(NULL);
 	    	printf("CHILD: Мое время = %s\n", ctime(&child_time));	    
 	    	break;
