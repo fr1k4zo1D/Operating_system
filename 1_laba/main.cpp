@@ -15,7 +15,9 @@ void new_process(){
 	pid_t pid;
 	int rv=0;
 	void end_of_process();
-	switch(pid=fork()){
+	pid = fork();
+	atexit(end_of_process);
+	switch(pid){
 		case -1 :
 			perror("fork");
 			exit(1);
@@ -26,8 +28,7 @@ void new_process(){
 			printf("CHILD:Введите мой код возврата:\n");
 			scanf("%d",&rv);
 			printf("CHILD:Выход! \n");
-			break;
-			//exit(rv);
+			exit(rv);
 		default:
 			printf("PARENT:это процесс родитель\n");
 			printf("PARENT: мой PID -- %d\n", getpid());
@@ -37,8 +38,6 @@ void new_process(){
 			printf("PARENT: Код возврата потомка : %d\n",WEXITSTATUS(rv));
 			printf("PARENT:Выход!\n");
 }
-
-	atexit(end_of_process);
 }
 
 void end_of_process()
